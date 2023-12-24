@@ -95,7 +95,7 @@ const Layout = ({handleClick, isSomeActive, data, turn, setTurn}:LayoutProps) =>
   else
   {
     return (
-      <div className="w-full h-full flex justify-center">
+      <div className='w-full h-screen items-center flex justify-center'>
         <CircularProgress />
       </div>
     );
