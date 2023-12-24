@@ -9,11 +9,13 @@ import { promptStore } from '@/store/atoms/promptStore';
 import { useRouter } from 'next/router';
 import { outputStore } from '@/store/atoms/outputStore';
 
+
 type Props = {
     question :string,
     answer: string,
     idx: number
 }
+
 
 interface LayoutProps {
     handleClick: React.MouseEventHandler<HTMLButtonElement>,
@@ -23,11 +25,14 @@ interface LayoutProps {
     data: Props[]
 }
 
+
 const Layout = ({handleClick, isSomeActive, data, turn, setTurn}:LayoutProps) => {
   const promptStoreValue = useRecoilValue(promptStore);
   const router = useRouter();
   const setoutputStoreValue = useSetRecoilState(outputStore);
   const[isLoading, setIsLoading] = useState(false);
+
+
   if(!isLoading)
   {
     return (
@@ -38,7 +43,7 @@ const Layout = ({handleClick, isSomeActive, data, turn, setTurn}:LayoutProps) =>
                 className="flex items-center mr-3 space-x-1 text-sm font-bold lg:text-base lg:space-x-2 py-2 px-4 bg-slate-50"
                 onClick={handleClick}
               >
-                <span style={{color: "#164e63"}} className="min-w-fit text-ellipsis lg:text-xl"> {!isSomeActive ? "Open All" : "Close All"}</span>
+                <span className="text-cyan-900 min-w-fit text-ellipsis"> {!isSomeActive ? "Open All" : "Close All"}</span>
                 <div
                   className={
                     "relative transition-all ease-in-out duration-200 " +
@@ -49,7 +54,7 @@ const Layout = ({handleClick, isSomeActive, data, turn, setTurn}:LayoutProps) =>
                 </div>
               </button>
         </div>
-  
+ 
         {data.map((el,i)=>{
           return (
               <div className='w-full' key={"questions"+i}>
@@ -74,17 +79,16 @@ const Layout = ({handleClick, isSomeActive, data, turn, setTurn}:LayoutProps) =>
             console.log(response.data.responseMessage);
             const formattedOutput = response.data.responseMessage
               .split('\n') // Split the string into lines
-              .map((line:any , index:any) => (
+              .map((line: any, index: any) => (
                 <span key={index}>
                   {line}
                   <br /> {/* Add a line break after each line */}
                 </span>
               ));
-  
+ 
               setoutputStoreValue({ outputValue: formattedOutput });
-
+             
               setIsLoading(false);
-  
             // setoutputStoreValue({ outputValue: response.data.responseMessage });
             router.push('/output');
           }} variant="contained" style={{backgroundColor: '#164e63'}}>Submit</Button>
@@ -100,7 +104,8 @@ const Layout = ({handleClick, isSomeActive, data, turn, setTurn}:LayoutProps) =>
       </div>
     );
   }
-  
+ 
 }
+
 
 export default Layout
