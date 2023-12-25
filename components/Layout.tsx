@@ -10,11 +10,15 @@ import { useRouter } from 'next/router';
 import { outputStore } from '@/store/atoms/outputStore';
 
 
+
+
 type Props = {
     question :string,
     answer: string,
     idx: number
 }
+
+
 
 
 interface LayoutProps {
@@ -26,11 +30,15 @@ interface LayoutProps {
 }
 
 
+
+
 const Layout = ({handleClick, isSomeActive, data, turn, setTurn}:LayoutProps) => {
   const promptStoreValue = useRecoilValue(promptStore);
   const router = useRouter();
   const setoutputStoreValue = useSetRecoilState(outputStore);
   const[isLoading, setIsLoading] = useState(false);
+
+
 
 
   if(!isLoading)
@@ -106,6 +114,8 @@ const Layout = ({handleClick, isSomeActive, data, turn, setTurn}:LayoutProps) =>
   }
  
 }
+
+
 
 
 export default Layout
