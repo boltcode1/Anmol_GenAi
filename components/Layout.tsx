@@ -79,10 +79,8 @@ const Layout = ({handleClick, isSomeActive, data, turn, setTurn}:LayoutProps) =>
         <div className='flex justify-center my-5'>
           <Button onClick={async()=>{
             setIsLoading(true);
-            const response = await axios.post('/api/apiCall', {} ,{
-              headers: {
-                message: promptStoreValue.promptValue + ' Give the output in simple text.'
-              }
+            const response = await axios.post('/api/apiCall', {
+              message: promptStoreValue.promptValue + ' Give the output in simple text.'
             });
             console.log(response.data.responseMessage);
             const formattedOutput = response.data.responseMessage

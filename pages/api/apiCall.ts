@@ -16,12 +16,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+    
     try{
         const response = await axios.post(
             'https://api.openai.com/v1/chat/completions',
             {
               model: 'gpt-3.5-turbo',
-              messages: [{ role: 'user', content: req.headers.message }],
+              messages: [{ role: 'user', content: req.body.message }],
             },
             {
               headers: {
